@@ -1,9 +1,9 @@
 {
     "pathToProj": [
-        "/home/sup/Projects/pointR-sample-projects/FeymanGraphs"
+        "~/Projects/pointR-sample-projects/FredkinSwitchGate"
     ],
     "projName": [
-        "FeymanGraphs.pprj"
+        "FredkinSwitchGate.pprj"
     ],
     "projType": [
         "generic"
