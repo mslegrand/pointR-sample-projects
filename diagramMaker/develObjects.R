@@ -109,6 +109,54 @@ arrow %<c-% function(points, r=5, stroke='black', stroke.width=2, ...){
  
 }
 
+d.callout<-function(xy1, xy2,  pt=2, r=20 ){
+  xy=mapply(min, xy1, xy2)
+  dxy<-abs(xy1-xy2)
+  r=min(r, dxy/2)
+  dx<-dxy[1]
+  dy<-dxy[2]
+  dl<-dx-3*r
+  hp<-3
+  if(pt==1){
+    dl1<-dl; dl2<-0
+    dp<-(-2*r)
+  } else if(pt==3){
+    dl2<-dl; dl1<-0
+    dp<-2*r
+  } else {
+    dl1<-dl2<-dl/2
+    dp<-0
+  }
+  d=list(
+    M=xy+c(0,r) ,
+    a=c(c(r,r), 0,0,1,c(r,-r)),
+    l=c(dx-2*r,0),
+    a=c(c(r,r), 0,0,1,c(r,r)),
+    l=c(0,dy-2*r),
+    a=c(c(r,r), 0,0,1,c(-r,r)),
+    l=c( c(-dl1,0), c(-r/2+dp,hp*r), c(-r/2-dp,-hp*r), c(-dl2,0)),
+    a=c(c(r,r), 0,0,1,c(-r,-r)),
+    z=''
+  )  
+}
+
+callout%<c-%function(points, txt='',  pt=3, r=20, ...){
+  if(ncol(points)<2){
+    NULL
+  } else {
+    xy1=points[,1]
+    xy2=points[,2]
+    g(
+      path(
+          d=d.callout(xy1,xy2, pt, r),
+            stroke='#0000FF',
+            stroke.width=2,
+            fill='none'
+      ),
+      text(cxy= (xy1+xy2)*c(.5,.5), txt, ...)
+    )
+  }
+}
 
 
 

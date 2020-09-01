@@ -165,4 +165,45 @@ svgR(wh=WH, stroke.width=2, stroke="#00FFFF",  fill="none",
 )
 ```
 ******************
+******************
+POPUP 
+```
+Callout
+```
+SNIPPET
+```
+pmap(ptR$${1:callOuts}, callout)
+```
+SVGR
+```
+library(svgR)
+WH<-c(48,32)
+WH<-c(48,32)
+stroke="#00FFFF"
+xy=c(.3,.15)*WH
+dx<-.5*WH[1]
+dy<-.4*WH[2]
+
+r=.1*min(WH)
+dl<-dx-3*r
+dp<- -2*r
+hp<-3
+d=list(
+    M=xy+c(0,r) ,
+    a=c(c(r,r), 0,0,1,c(r,-r)),
+    l=c(dx-r,0),
+    a=c(c(r,r), 0,0,1,c(r,r)),
+    l=c(0,dy-r),
+    a=c(c(r,r), 0,0,1,c(-r,r)),
+    l=c( c(-dl,0), c(-r+dp,hp*r), c(-r-dp,-hp*r)),
+    a=c(c(r,r), 0,0,1,c(-r,-r)),
+    z=''
+  )  
+svgR(wh=WH, stroke.width=2, stroke="#00FFFF",  fill="none",
+     path(
+        d=d  
+    )
+)
+```
+******************
 
